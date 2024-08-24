@@ -232,7 +232,7 @@ class Text(Transform):
                 data = [data] if isinstance(data[0], str) else data
             lines = (i for s in data for i in StringIO(s + '\n'))
 
-        index, sentence, nlp = 0, [], spacy.load("en", disable=["ner"])
+        index, sentence, nlp = 0, [], spacy.load("de_core_news_sm", disable=["ner"])
         for line in lines:
             line = line.strip()
             if len(line) == 0:

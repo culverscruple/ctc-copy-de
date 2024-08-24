@@ -51,7 +51,7 @@ The following packages should be installed:
 
 Clone this repo recursively:
 ```sh
-git clone https://github.com/yzhangcs/ctc-copy.git --recursive
+git clone https://github.com/culverscruple/ctc-copy-de.git --recursive
 ```
 
 You can follow this [repo](https://github.com/HillZhang1999/SynGEC) to obtain the 3-stage train/dev/test data for training a English GEC model.

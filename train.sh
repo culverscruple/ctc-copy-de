@@ -25,6 +25,7 @@ echo "update:      ${update:=5}"
 echo "devices:     ${devices:=0,1,2,3,4,5,6,7}"
 echo "config:      ${config:=configs/roberta.yaml}"
 echo "path:        ${path:=exp/ctc.roberta}"
+echo "dev:         ${dev:=data/clang8.test}"
 
 code=$path.code
 mkdir -p $path.code
@@ -45,7 +46,7 @@ for stage in 1 2 3; do
     if [ $stage -eq 1 ]; then
         train=data/clang8.train
         (set -x
-        python -u run.py train -b -s $seed -d $devices -c $config -p $current --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --eval-tgt --cache --amp
+        python -u run.py train -b -s $seed -d $devices -c $config -p $current --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --dev $dev --eval-tgt --cache --amp
         )
     else
         if [ $stage -eq 2 ]; then
@@ -55,7 +56,7 @@ for stage in 1 2 3; do
         fi
         (set -x
         cp $prev $current
-        python -u run.py train -s $seed -d $devices -c $config -p $current --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --eval-tgt --cache --amp
+        python -u run.py train -s $seed -d $devices -c $config -p $current --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --dev $dev --eval-tgt --cache --amp
         )
     fi
     bash pred.sh path=$current

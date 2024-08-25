@@ -1,5 +1,5 @@
 encoder: bert
-bert: roberta-large
+bert: xlm-roberta-large
 upsampling: 4
 beam_size: 12
 dropout: .1
@@ -8,7 +8,7 @@ n_decoder_layers: 2
 find_unused_parameters: 0
 topk: 1
 label_smoothing: 0
-lr: 5e-05
+lr: 2e-05
 lr_rate: 10
 mu: .9
 nu: .9
@@ -19,8 +19,8 @@ min_freq: 2
 fix_len: 20
 epochs: 64
 patience: 10
-batch_size: 100000
-eval_batch_size: 10000
+batch_size: 10000
+eval_batch_size: 1000
 warmup_steps: 1000
 update_steps: 25
 max_len: 64

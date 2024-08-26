@@ -36,7 +36,8 @@ cp -r 3rdparty $code/
 printf "Current commits:\n$(git log -1 --oneline)\n3rd parties:\n"
 cd 3rdparty/parser/ && printf "parser\n$(git log -1 --oneline)\n" && cd ../..
 
-for stage in 1 2 3; do
+# for stage in 1 2 3; do
+for stage in 1; do
     mkdir -p $path/stage$stage
     var="lr$stage";     lr=${!var}
     var="rate$stage";   rate=${!var}

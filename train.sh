@@ -61,6 +61,6 @@ for stage in 1; do
         python -u run.py train -s $seed -d $devices -c $config -p $current --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --dev $dev --test $test --eval-tgt --cache --amp
         )
     fi
-    bash pred.sh path=$current
+    # bash pred.sh path=$current test=$test
     prev=$current
 done

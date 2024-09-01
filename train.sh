@@ -25,8 +25,9 @@ echo "update:      ${update:=5}"
 echo "devices:     ${devices:=0,1,2,3,4,5,6,7}"
 echo "config:      ${config:=configs/roberta.yaml}"
 echo "path:        ${path:=exp/ctc.roberta}"
+echo "train:       ${train:=data/falko_merlin.train}"
 echo "dev:         ${dev:=data/clang8.test}"
-echo "test:        ${dev:=data/falko_merlin.test}"
+echo "test:        ${test:=data/falko_merlin.test}"
 
 code=$path.code
 mkdir -p $path.code
@@ -46,7 +47,7 @@ for stage in 1; do
     current="$path/stage$stage/model.lr$lr.rate$rate.upsampling$upsampling.batch$batch.epochs$epochs.warmup$warmup.glat$glat.seed$seed"
 
     if [ $stage -eq 1 ]; then
-        train=data/clang8.train
+        # train=data/clang8.train
         (set -x
 #        python -u run.py train -b -s $seed -d $devices -c $config -p $current --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --dev $dev --test $test --eval-tgt --cache --amp
         python -u run.py train -s $seed -d $devices -c $config -p $path --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --dev $dev --test $test --eval-tgt --cache --amp

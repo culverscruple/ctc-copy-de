@@ -8,7 +8,7 @@ n_decoder_layers: 2
 find_unused_parameters: 0
 topk: 1
 label_smoothing: 0
-lr: 2e-05
+lr: 5e-06
 lr_rate: 10
 mu: .9
 nu: .9

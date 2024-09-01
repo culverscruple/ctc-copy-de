@@ -48,7 +48,8 @@ for stage in 1; do
     if [ $stage -eq 1 ]; then
         train=data/clang8.train
         (set -x
-        python -u run.py train -b -s $seed -d $devices -c $config -p $current --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --dev $dev --test $test --eval-tgt --cache --amp
+#        python -u run.py train -b -s $seed -d $devices -c $config -p $current --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --dev $dev --test $test --eval-tgt --cache --amp
+        python -u run.py train -s $seed -d $devices -c $config -p $path --lr=$lr  --lr-rate=$rate  --upsampling=$upsampling --batch-size=$batch --epochs=$epochs  --warmup-steps=$warmup  --glat=$glat --update-steps=$update --encoder=bert --bert=$bert --train $train --dev $dev --test $test --eval-tgt --cache --amp
         )
     else
         if [ $stage -eq 2 ]; then
